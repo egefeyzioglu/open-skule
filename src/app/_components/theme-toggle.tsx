@@ -4,8 +4,14 @@ import { MoonStar, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { Button } from "src/components/ui/button";
+import { cn } from "src/lib/utils";
 
 const THEME_STORAGE_KEY = "open-skule-theme";
+
+function applyTheme(isDark: boolean) {
+  document.documentElement.classList.toggle("dark", isDark);
+  document.documentElement.style.colorScheme = isDark ? "dark" : "light";
+}
 
 type ThemeToggleProps = {
   mode?: "icon" | "text";
@@ -23,14 +29,14 @@ export default function ThemeToggle({
     const storedTheme = window.localStorage.getItem(THEME_STORAGE_KEY);
     const initialTheme = storedTheme ?? "dark";
 
-    document.documentElement.classList.toggle("dark", initialTheme === "dark");
+    applyTheme(initialTheme === "dark");
     setIsDarkMode(initialTheme === "dark");
     setIsMounted(true);
   }, []);
 
   function handleThemeChange(checked: boolean) {
     setIsDarkMode(checked);
-    document.documentElement.classList.toggle("dark", checked);
+    applyTheme(checked);
     window.localStorage.setItem(THEME_STORAGE_KEY, checked ? "dark" : "light");
   }
 
@@ -39,7 +45,7 @@ export default function ThemeToggle({
       type="button"
       variant={mode === "text" ? "ghost" : "outline"}
       size={mode === "text" ? "default" : "icon"}
-      className={className}
+      className={cn("cursor-pointer", className)}
       aria-label="Toggle dark mode"
       onClick={() => handleThemeChange(!(isMounted ? isDarkMode : false))}
     >

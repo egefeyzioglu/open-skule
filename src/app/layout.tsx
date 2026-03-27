@@ -2,7 +2,6 @@ import "src/styles/globals.css";
 
 import { type Metadata } from "next";
 import { Geist } from "next/font/google";
-import Script from "next/script";
 
 import { TRPCReactProvider } from "src/trpc/react";
 
@@ -17,23 +16,48 @@ const geist = Geist({
   variable: "--font-geist-sans",
 });
 
+const themeInitScript = `
+  (() => {
+    const storageKey = "open-skule-theme";
+    const root = document.documentElement;
+
+    root.classList.add("theme-booting");
+
+    try {
+      const storedTheme = window.localStorage.getItem(storageKey);
+      const theme = storedTheme ?? "dark";
+      const isDark = theme === "dark";
+
+      root.classList.toggle("dark", isDark);
+      root.style.colorScheme = isDark ? "dark" : "light";
+    } catch {
+      root.classList.add("dark");
+      root.style.colorScheme = "dark";
+    }
+
+    requestAnimationFrame(() => {
+      root.classList.remove("theme-booting");
+    });
+  })();
+`;
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${geist.variable}`} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${geist.variable} dark`}
+      suppressHydrationWarning
+    >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: themeInitScript,
+          }}
+        />
+      </head>
       <body>
-        <Script id="theme-init" strategy="beforeInteractive">
-          {`
-            (() => {
-              const storageKey = "open-skule-theme";
-              const storedTheme = window.localStorage.getItem(storageKey);
-              const theme = storedTheme ?? "dark";
-
-              document.documentElement.classList.toggle("dark", theme === "dark");
-            })();
-          `}
-        </Script>
         <TRPCReactProvider>{children}</TRPCReactProvider>
       </body>
     </html>
