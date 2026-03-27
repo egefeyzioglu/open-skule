@@ -1,6 +1,13 @@
 import { createEnv } from "@t3-oss/env-nextjs";
 import { z } from "zod";
 
+/**
+ * @param {string} url
+ */
+function isRemoteLibsqlUrl(url) {
+  return url.startsWith("libsql://") || url.startsWith("https://");
+}
+
 export const env = createEnv({
   /**
    * Specify your server-side environment variables schema here. This way you can ensure the app
@@ -14,6 +21,7 @@ export const env = createEnv({
     AUTH_DISCORD_ID: z.string(),
     AUTH_DISCORD_SECRET: z.string(),
     DATABASE_URL: z.string().url(),
+    TURSO_AUTH_TOKEN: z.string().optional(),
     NODE_ENV: z
       .enum(["development", "test", "production"])
       .default("development"),
@@ -37,6 +45,7 @@ export const env = createEnv({
     AUTH_DISCORD_ID: process.env.AUTH_DISCORD_ID,
     AUTH_DISCORD_SECRET: process.env.AUTH_DISCORD_SECRET,
     DATABASE_URL: process.env.DATABASE_URL,
+    TURSO_AUTH_TOKEN: process.env.TURSO_AUTH_TOKEN,
     NODE_ENV: process.env.NODE_ENV,
   },
   /**
@@ -50,3 +59,9 @@ export const env = createEnv({
    */
   emptyStringAsUndefined: true,
 });
+
+if (isRemoteLibsqlUrl(env.DATABASE_URL) && !env.TURSO_AUTH_TOKEN) {
+  throw new Error(
+    "TURSO_AUTH_TOKEN is required when DATABASE_URL points to a remote libSQL database.",
+  );
+}
