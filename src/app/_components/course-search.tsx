@@ -86,14 +86,14 @@ export default function CourseSearch({
 
   const panelContent =
     filteredCourses.length > 0 ? (
-      <div className={cn("py-1", isHero && "grid gap-2 p-2")}>
-        {filteredCourses.map((course) => (
+      <div className={cn(isHero ? "" : "")}>
+        {filteredCourses.map((course, index) => (
           <Link
             key={course.slug}
             href={`/courses/${course.slug}`}
             className={cn(
-              "cursor-pointer hover:bg-muted focus:bg-muted block rounded-lg px-4 py-3 transition-colors outline-none",
-              isHero && "border-border bg-background/70 border",
+              "hover:bg-muted focus:bg-muted block cursor-pointer px-4 py-3 transition-colors outline-none",
+              index > 0 && "border-border border-t",
             )}
             onClick={() => setIsOpen(false)}
           >
