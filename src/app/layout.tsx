@@ -58,7 +58,23 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <TRPCReactProvider>{children}</TRPCReactProvider>
+        <TRPCReactProvider>
+          <div className="flex min-h-screen flex-col">
+            <div className="flex-1">{children}</div>
+            <footer className="text-muted-foreground px-6 py-6 text-center text-sm sm:px-10 lg:px-12">
+              By{" "}
+              <a
+                href="https://skule.ca"
+                target="_blank"
+                rel="noreferrer noopener"
+                className="text-foreground underline underline-offset-4"
+              >
+                EngSoc
+              </a>
+              , for students
+            </footer>
+          </div>
+        </TRPCReactProvider>
       </body>
     </html>
   );
