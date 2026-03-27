@@ -7,19 +7,13 @@ import { Button } from "src/components/ui/button";
 
 const THEME_STORAGE_KEY = "open-skule-theme";
 
-function getSystemTheme() {
-  return window.matchMedia("(prefers-color-scheme: dark)").matches
-    ? "dark"
-    : "light";
-}
-
 export default function ThemeToggle() {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     const storedTheme = window.localStorage.getItem(THEME_STORAGE_KEY);
-    const initialTheme = storedTheme ?? getSystemTheme();
+    const initialTheme = storedTheme ?? "dark";
 
     document.documentElement.classList.toggle("dark", initialTheme === "dark");
     setIsDarkMode(initialTheme === "dark");

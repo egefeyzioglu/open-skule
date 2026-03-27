@@ -28,10 +28,7 @@ export default function RootLayout({
             (() => {
               const storageKey = "open-skule-theme";
               const storedTheme = window.localStorage.getItem(storageKey);
-              const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
-                ? "dark"
-                : "light";
-              const theme = storedTheme ?? systemTheme;
+              const theme = storedTheme ?? "dark";
 
               document.documentElement.classList.toggle("dark", theme === "dark");
             })();

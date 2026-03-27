@@ -6,7 +6,11 @@ import NavbarSearch from "src/app/_components/navbar-search";
 import ThemeToggle from "src/app/_components/theme-toggle";
 import { auth } from "src/server/auth";
 
-export default async function NavBar() {
+type NavBarProps = {
+  hideSearch?: boolean;
+};
+
+export default async function NavBar({ hideSearch = false }: NavBarProps) {
   const session = await auth();
   const user = session?.user;
 
@@ -31,7 +35,7 @@ export default async function NavBar() {
         </div>
 
         <div className="flex items-center gap-2">
-          <NavbarSearch className="hidden w-72 md:block" />
+          {!hideSearch ? <NavbarSearch className="hidden w-72 md:block" /> : null}
           <ThemeToggle />
           {user ? (
             <AuthButton image={user.image} name={user.name} />
@@ -45,9 +49,11 @@ export default async function NavBar() {
           )}
         </div>
       </div>
-      <div className="border-border border-t px-8 py-2 md:hidden">
-        <NavbarSearch className="mx-auto w-full" />
-      </div>
+      {!hideSearch ? (
+        <div className="border-border border-t px-8 py-2 md:hidden">
+          <NavbarSearch className="mx-auto w-full" />
+        </div>
+      ) : null}
     </header>
   );
 }
