@@ -92,7 +92,7 @@ export default function CourseSearch({
             key={course.slug}
             href={`/courses/${course.slug}`}
             className={cn(
-              "hover:bg-muted focus:bg-muted block rounded-lg px-4 py-3 transition-colors outline-none",
+              "cursor-pointer hover:bg-muted focus:bg-muted block rounded-lg px-4 py-3 transition-colors outline-none",
               isHero && "border-border bg-background/70 border",
             )}
             onClick={() => setIsOpen(false)}
@@ -179,7 +179,7 @@ export default function CourseSearch({
                 key={course.slug}
                 variant="outline"
                 size="lg"
-                className="h-auto w-full items-start justify-start px-4 py-4 text-left"
+                className="h-auto w-full items-start justify-start px-4 py-4 text-left cursor-pointer"
                 onClick={() => handleSelect(course.slug)}
               >
                 <div className="grid gap-1">
