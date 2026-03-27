@@ -28,7 +28,7 @@ export default async function NavBar({ hideSearch = false }: NavBarProps) {
             />
             <div className="min-w-0">
               <p className="text-foreground truncate text-lg font-semibold tracking-tight sm:text-xl">
-                Open CourseWare
+                OpenCourseWare
               </p>
             </div>
           </Link>
