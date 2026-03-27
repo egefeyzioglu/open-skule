@@ -2,6 +2,7 @@ import "src/styles/globals.css";
 
 import { type Metadata } from "next";
 import { Geist } from "next/font/google";
+import Script from "next/script";
 
 import { TRPCReactProvider } from "src/trpc/react";
 
@@ -20,8 +21,22 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${geist.variable}`}>
+    <html lang="en" className={`${geist.variable}`} suppressHydrationWarning>
       <body>
+        <Script id="theme-init" strategy="beforeInteractive">
+          {`
+            (() => {
+              const storageKey = "open-skule-theme";
+              const storedTheme = window.localStorage.getItem(storageKey);
+              const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
+                ? "dark"
+                : "light";
+              const theme = storedTheme ?? systemTheme;
+
+              document.documentElement.classList.toggle("dark", theme === "dark");
+            })();
+          `}
+        </Script>
         <TRPCReactProvider>{children}</TRPCReactProvider>
       </body>
     </html>
