@@ -37,7 +37,7 @@ export default function ThemeToggle() {
       type="button"
       variant="outline"
       size="icon"
-      className="h-10 w-10"
+      className="h-10 w-10 cursor-pointer"
       aria-label="Toggle dark mode"
       onClick={() => handleThemeChange(!(isMounted ? isDarkMode : false))}
     >

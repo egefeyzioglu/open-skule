@@ -14,18 +14,20 @@ export default async function NavBar() {
     <header className="border-border bg-background/95 supports-[backdrop-filter]:bg-background/80 border-b backdrop-blur">
       <div className="mx-auto flex min-h-16 w-full items-center justify-between gap-2 px-8 sm:px-10 lg:px-12">
         <div className="flex min-w-0 items-center gap-2">
-          <Image
-            src="https://picsum.photos/120/48"
-            width={120}
-            height={48}
-            alt="SKULE logo placeholder"
-            className="h-10 w-auto rounded-md object-cover"
-          />
-          <div className="min-w-0">
-            <p className="text-foreground truncate text-lg font-semibold tracking-tight sm:text-xl">
-              Open CourseWare
-            </p>
-          </div>
+          <Link href="/" className="flex min-w-0 items-center gap-2">
+            <Image
+              src="https://picsum.photos/120/48"
+              width={120}
+              height={48}
+              alt="SKULE logo placeholder"
+              className="h-10 w-auto rounded-md object-cover"
+            />
+            <div className="min-w-0">
+              <p className="text-foreground truncate text-lg font-semibold tracking-tight sm:text-xl">
+                Open CourseWare
+              </p>
+            </div>
+          </Link>
         </div>
 
         <div className="flex items-center gap-2">
