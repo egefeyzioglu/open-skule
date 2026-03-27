@@ -87,13 +87,22 @@ export default function MobileNavMenu({
         </Button>
 
         <Link href="/" className="flex min-w-0 items-center justify-center gap-2">
-          <Image
-            src="https://picsum.photos/120/48"
-            width={120}
-            height={48}
-            alt="SKULE logo placeholder"
-            className="h-10 w-auto rounded-md object-cover"
-          />
+          <>
+            <Image
+              src="/img/skule-logo-blue.png"
+              width={120}
+              height={48}
+              alt="SKULE logo"
+              className="block h-10 w-auto dark:hidden"
+            />
+            <Image
+              src="/img/skule-logo-black.png"
+              width={120}
+              height={48}
+              alt="SKULE logo"
+              className="hidden h-10 w-auto invert dark:block"
+            />
+          </>
           <p className="text-foreground truncate text-lg font-semibold tracking-tight">
             OpenCourseWare
           </p>

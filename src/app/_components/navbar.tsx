@@ -21,13 +21,22 @@ export default async function NavBar({ hideSearch = false }: NavBarProps) {
         <div className="mx-auto flex min-h-16 w-full items-center justify-between gap-2 px-8 sm:px-10 lg:px-12">
           <div className="flex min-w-0 items-center gap-2">
             <Link href="/" className="flex min-w-0 items-center gap-2">
-              <Image
-                src="https://picsum.photos/120/48"
-                width={120}
-                height={48}
-                alt="SKULE logo placeholder"
-                className="h-10 w-auto rounded-md object-cover"
-              />
+              <>
+                <Image
+                  src="/img/skule-logo-blue.png"
+                  width={120}
+                  height={48}
+                  alt="SKULE logo"
+                  className="block h-10 w-auto dark:hidden"
+                />
+                <Image
+                  src="/img/skule-logo-black.png"
+                  width={120}
+                  height={48}
+                  alt="SKULE logo"
+                  className="hidden h-10 w-auto invert dark:block"
+                />
+              </>
               <div className="min-w-0">
                 <p className="text-foreground truncate text-lg font-semibold tracking-tight sm:text-xl">
                   OpenCourseWare
