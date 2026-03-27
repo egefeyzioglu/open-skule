@@ -7,7 +7,15 @@ import { Button } from "src/components/ui/button";
 
 const THEME_STORAGE_KEY = "open-skule-theme";
 
-export default function ThemeToggle() {
+type ThemeToggleProps = {
+  mode?: "icon" | "text";
+  className?: string;
+};
+
+export default function ThemeToggle({
+  mode = "icon",
+  className,
+}: ThemeToggleProps) {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
 
@@ -29,13 +37,19 @@ export default function ThemeToggle() {
   return (
     <Button
       type="button"
-      variant="outline"
-      size="icon"
-      className="h-10 w-10 cursor-pointer"
+      variant={mode === "text" ? "ghost" : "outline"}
+      size={mode === "text" ? "default" : "icon"}
+      className={className}
       aria-label="Toggle dark mode"
       onClick={() => handleThemeChange(!(isMounted ? isDarkMode : false))}
     >
-      {isMounted && isDarkMode ? (
+      {mode === "text" ? (
+        <span>
+          {isMounted && isDarkMode
+            ? "Switch to light mode"
+            : "Switch to dark mode"}
+        </span>
+      ) : isMounted && isDarkMode ? (
         <Sun className="size-4" aria-hidden="true" />
       ) : (
         <MoonStar className="size-4" aria-hidden="true" />
