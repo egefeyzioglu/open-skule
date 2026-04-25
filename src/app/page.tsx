@@ -18,7 +18,7 @@ export default async function Home() {
             <section className="mx-auto max-w-3xl space-y-4 px-1">
               <div className="space-y-2">
                 <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
-                  What is SKULE&trade; OpenCourseWare?
+                  What is Skule&trade; OpenCourseWare?
                 </h2>
               </div>
               <div className="text-muted-foreground space-y-4 text-base leading-7">

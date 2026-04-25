@@ -45,7 +45,7 @@ export default function ThemeToggle({
       type="button"
       variant={mode === "text" ? "ghost" : "outline"}
       size={mode === "text" ? "default" : "icon"}
-      className={cn("cursor-pointer", className)}
+      className={cn("cursor-pointer w-[40px] h-[40px]", className)}
       aria-label="Toggle dark mode"
       onClick={() => handleThemeChange(!(isMounted ? isDarkMode : false))}
     >

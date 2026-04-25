@@ -6,7 +6,7 @@ import { Geist } from "next/font/google";
 import { TRPCReactProvider } from "src/trpc/react";
 
 export const metadata: Metadata = {
-  title: "SKULE™ OpenCourseWare",
+  title: "Skule™ OpenCourseWare",
   // description: "",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
