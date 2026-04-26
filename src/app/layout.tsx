@@ -5,6 +5,8 @@ import { Geist } from "next/font/google";
 
 import { TRPCReactProvider } from "src/trpc/react";
 
+import NavBar from "src/app/_components/navbar";
+
 export const metadata: Metadata = {
   title: "Skule™ OpenCourseWare",
   // description: "",
@@ -60,7 +62,9 @@ export default function RootLayout({
       <body>
         <TRPCReactProvider>
           <div className="flex min-h-screen flex-col">
-            <div className="flex-1">{children}</div>
+
+              <NavBar hideSearch={false} />
+              <div className="flex-1">{children}</div>
             <footer className="text-muted-foreground px-6 py-6 text-center text-sm sm:px-10 lg:px-12">
               By{" "}
               <a

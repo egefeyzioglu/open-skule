@@ -6,7 +6,6 @@ export default async function Home() {
   return (
     <HydrateClient>
       <div className="from-background via-background to-muted/50 min-h-screen bg-gradient-to-b">
-        <NavBar hideSearch />
         <main>
           <div className="mx-auto flex w-full max-w-6xl flex-col gap-20 px-6 py-14 sm:px-10 sm:py-20 lg:px-12">
             <section className="pt-4 sm:pt-8">

@@ -13,7 +13,6 @@ import { Button, buttonVariants } from "src/components/ui/button";
 import { cn } from "src/lib/utils";
 
 type MobileNavMenuProps = {
-  hideSearch?: boolean;
   userName?: string | null;
   userImage?: string | null;
 };
@@ -34,7 +33,6 @@ function getInitials(name?: string | null) {
 }
 
 export default function MobileNavMenu({
-  hideSearch = false,
   userName,
   userImage,
 }: MobileNavMenuProps) {
@@ -114,7 +112,7 @@ export default function MobileNavMenu({
       {isOpen ? (
         <div className="border-border border-t px-4 py-4">
           <div className="flex flex-col gap-3">
-            {!hideSearch ? <NavbarSearch className="w-full" /> : null}
+            <NavbarSearch className="w-full" />
 
             {userName ? (
               <Link
