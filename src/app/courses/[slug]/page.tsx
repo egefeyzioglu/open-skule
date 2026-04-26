@@ -2,7 +2,6 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 
-import NavBar from "src/app/_components/navbar";
 import { Button } from "src/components/ui/button";
 import { formatSemesterCode } from "src/lib/semester";
 import {
