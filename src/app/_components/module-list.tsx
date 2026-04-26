@@ -35,7 +35,7 @@ export default function ModuleList(props: ModuleListProps) {
     const { course, currentModule} = props;
     return (
         <div className="w-1/6 h-full min-w-max flex flex-col border-r-2">
-            <div className="size-max w-full px-4 py-4 border-b-2">
+            <div className="size-max w-full px-4 py-2 my-2 border-b-2">
                 <h1 className="text-3xl">{course.code}</h1>
                 <h2 className="text-lg">{course.title}</h2>
                 <span className="text-muted-foreground">{course.modules.length} modules ({course.durationHours} hours)</span>
